@@ -7,4 +7,7 @@ Game Runner
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 nvm install --lts
 ```
-2. 
+2. Run front-end using:
+```
+npm run dev
+```
