@@ -5,6 +5,17 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+@font-face {
+  font-family: 'Cristone';
+  src: local('Cristone'), url(Cristone.ttf) format('truetype');
+}
+
+.header {
+  text-align: center;
+  font-family: 'Cristone';
+  font-size: 5.5vw;
+}
+
 html,
 body {
   @apply bg-white dark:bg-gray-950;
@@ -13,3 +24,6 @@ body {
     color-scheme: dark;
   }
 }
+
+
+  
