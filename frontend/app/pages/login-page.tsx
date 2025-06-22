@@ -1,6 +1,32 @@
-import { NavLink } from "react-router";
-
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 export function LoginPage() {
+    let navigate = useNavigate()
+    const [username, setUsername] = useState('')
+
+    const handleChange = (set : any) => (event : any) => {
+      set(event.target.value);
+    }
+
+    const authenticate = () => {
+      axios.put('user', { 
+          username: username, 
+      })
+      .then((response) => {
+        if(response?.headers?.getAuthorization) {
+          localStorage.setItem('authorization', "AUTH")
+          navigate("/dashboard")
+        } else {
+          navigate("/registration")
+        }
+      })
+      .catch((err) => {
+        console.log("Invalid Login.")
+      })
+    }
+
+
   return (
     <main className="flex items-center justify-center pt-16 pb-4">
       <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
@@ -16,11 +42,13 @@ export function LoginPage() {
             </p>
             <div className="self-center text-red bg-white text-gray-700">
               <input type="text"
+                      onInput={handleChange(setUsername)}
                       aria-label="Username or Email"
                       className="text-center" />
             </div>
             <div className="self-center">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      onClick={authenticate}>
                 Login
               </button>
             </div>
